@@ -1,6 +1,7 @@
 package com.spring.rest;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.hibernate.Session;
@@ -21,7 +22,7 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/greeting")
-    public Candidate greeting(@RequestBody String name) {
+    public List<Candidate> greeting(@RequestBody String name) {
     	
     	SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
@@ -44,18 +45,21 @@ public class GreetingController {
     	
 
     
-    	
+		 SessionFactory sessionFactory1 = HibernateUtil.getSessionFactory();
+	        Session session1 = sessionFactory1.openSession();
+	         
+	        List<Candidate> students = session1.createQuery("FROM Candidate").list();
         ObjectMapper mapperObj = new ObjectMapper();
          
         try {
             // get Employee object as a json string
-            String jsonStr = mapperObj.writeValueAsString(emp);
+            String jsonStr = mapperObj.writeValueAsString(students);
             System.out.println(jsonStr);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return emp;
+        return students;
 //		return new Greeting(1, name);
     }
 }
