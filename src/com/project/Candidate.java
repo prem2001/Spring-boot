@@ -33,5 +33,13 @@ import javax.persistence.Table;
 			this.canName = canName;
 		}
 
+		@Override
+		public String toString() {
+			return "Candidate [id=" + id + ", canName=" + canName
+					+ ", getId()=" + getId() + ", getCanName()=" + getCanName()
+					+ ", getClass()=" + getClass() + ", hashCode()="
+					+ hashCode() + ", toString()=" + super.toString() + "]";
+		}
+
 
 }
