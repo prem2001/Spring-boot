@@ -12,7 +12,6 @@ public class Run {
 		 SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 	        Session session = sessionFactory.openSession();
 	        session.beginTransaction();
-	         
 	        Candidate student = new Candidate();
 	        student.setCanName("prem2");
 	        session.save(student);
